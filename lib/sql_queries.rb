@@ -19,8 +19,8 @@ def selects_the_user_name_age_and_pledge_amount_for_all_pledges_alphabetized_by_
 end
 
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
-  "SELECT projects.title, SUM(pledges.amount) - projects.funding_goal FROM projects
-    INNER JOIN pledges ON projects.id = pledges.project_id GROUP BY projects.title"
+  "SELECT projects.title, SUM(pledges.amount) - projects.funding_goal AS overage FROM projects
+    INNER JOIN pledges ON projects.id = pledges.project_id GROUP BY projects.title HAVING overage > -1"
 #[["My book on SQL", 0], ["The next Inna-Gadda-Davida", 142]]
 #SUM(pledges.amount) - projects.funding_goal
 end
